@@ -7,15 +7,26 @@ namespace Utils
 {
     public class AnimatorRandomParameterGenerator : MonoBehaviour
     {
-        [SerializeField] 
+        private const float GenerationIntervalInSec = 1f;
+        
+        [SerializeField]
         private Animator _animator;
-
+        [SerializeField]
+        private float _minValue;
+        [SerializeField]
+        private float _maxValue = 3;
+        
         private void Awake()
         {
             Observable
-                .Interval(TimeSpan.FromSeconds(1))
-                .Subscribe(_ => _animator.SetFloat("RandomFloat", Random.Range(0, 3)))
+                .Interval(TimeSpan.FromSeconds(GenerationIntervalInSec))
+                .Subscribe(_ => SetRandomNumber())
                 .AddTo(this);
+        }
+
+        private void SetRandomNumber()
+        {
+            _animator.SetFloat("RandomFloat", Random.Range(_minValue, _maxValue));
         }
     }
 }

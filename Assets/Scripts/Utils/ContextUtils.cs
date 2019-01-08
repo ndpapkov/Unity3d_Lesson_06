@@ -11,23 +11,23 @@
             return args;
         }
 
-        internal static T GetFrom<T>(object context) where T : class
+        internal static T Get<T>(object context) where T : class
         {
-            var t = context as T;
-            if (t != null)
+            var result = context as T;
+            if (result != null)
             {
-                return t;
+                return result;
             }
 
-            var a = context as object[];
-            if (a != null)
+            var contextObjects = context as object[];
+            if (contextObjects != null)
             {
-                foreach (var c in a)
+                foreach (var contextObject in contextObjects)
                 {
-                    t = c as T;
-                    if (t != null)
+                    result = contextObject as T;
+                    if (result != null)
                     {
-                        return t;
+                        return result;
                     }
                 }
             }

@@ -19,9 +19,9 @@ namespace Managers.UIManager.Screens.SelectLevelScreen
 
         public void Initialize(object context)
         {
-            _signalBus = ContextUtils.GetFrom<SignalBus>(context);
-            _levels = ContextUtils.GetFrom<LevelSettings[]>(context);
-            _playerUnit = ContextUtils.GetFrom<UnitSettings>(context);
+            _signalBus = ContextUtils.Get<SignalBus>(context);
+            _levels = ContextUtils.Get<LevelSettings[]>(context);
+            _playerUnit = ContextUtils.Get<UnitSettings>(context);
             
             UpdateLevelView();
         }
